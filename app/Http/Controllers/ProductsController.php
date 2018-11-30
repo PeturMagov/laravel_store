@@ -19,18 +19,13 @@ class ProductsController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
-        $products = Product::all();
 
-        if(!empty($search)) {
-            $products = Product::where('name', 'like', '%'.$search.'%')
-                        ->orWhere('price', 'like', '%'.$search.'%')
-                        ->orWhereHas('brand', function($q) use ($search){
-                            $q->where('name', 'like', '%' . $search . '%');
-                        })
-                        ->get();
-
-            return view('products.index')->with('products', $products);            
-        }
+        $products = Product::where('name', 'like', '%'.$search.'%')
+                    ->orWhere('price', 'like', '%'.$search.'%')
+                    ->orWhereHas('brand', function($q) use ($search){
+                        $q->where('name', 'like', '%' . $search . '%');
+                    })
+                    ->get();
 
         return view('products.index')->with('products', $products);
     }

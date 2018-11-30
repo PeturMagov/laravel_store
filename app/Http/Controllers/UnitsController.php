@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 use App\Unit;
 use App\Brand;
 use App\Product;
@@ -21,18 +22,14 @@ class UnitsController extends Controller
         $brand_id = $request->brand_id;
         $brands = Brand::all();
 
-        $units = Unit::where(function($q) use ($product, $brand_id) {
-            $q->where('number', 'like', '%'.$product.'%')
-              ->orWhereHas('product', function($pq) use ($product){
-                $pq->where('name', 'like', '%'.$product.'%');
-            });
-            
-        })
-        ->whereHas('product', function($q) use ($brand_id) {
-            $q->where('brand_id', 'like', '%'.$brand_id.'%');
-        })
-        ->get();
-        
+        $units = DB::table('units')
+            ->join('products', 'products.id', '=', 'units.product_id')
+            ->join('brands', 'brands.id', '=', 'products.brand_id')
+            ->select('units.*', 'products.*', 'brands.id', 'brands.name AS brand_name', 'brands.logo')
+            ->where('brand_id', 'like', '%'.$brand_id.'%')
+            ->where('products.name', 'like', '%'.$product.'%')
+            ->orWhere('number', 'like', '%'.$product.'%')
+            ->get();
 
         return view('units.index')->with('units', $units)->with('brands', $brands)->with('brand_id', $brand_id);
     }

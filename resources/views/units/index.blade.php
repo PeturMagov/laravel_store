@@ -66,8 +66,8 @@
                 <tbody>
                 	@foreach($units as $unit)
 	                    <tr class="tr-shadow">
-	                        <td>{{ $unit->product->name }}</td>
-                            <td><img src="{{ $unit->product->brand->logo }}" style="width: 100px; height: 60px"></td>
+	                        <td>{{ $unit->name }}</td>
+                            <td><img src="{{ $unit->logo }}" style="width: 100px; height: 60px"></td>
                             <td>{{ $unit->number }}</td>
                             <td>{{ $unit->status }}</td>
 	                        <td>
