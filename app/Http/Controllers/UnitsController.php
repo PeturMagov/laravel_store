@@ -20,25 +20,23 @@ class UnitsController extends Controller
         $product = $request->product;
         $brand_id = $request->brand_id;
         $brands = Brand::all();
-        $units = Unit::all();
 
-        if(!empty($brand_id)) {
-            $units = Unit::whereHas('product', function($q) use ($brand_id){
-                            $q->where('brand_id', 'like', '%'.$brand_id.'%');
-                        })->get();
-            return view('units.index')->with('units', $units)->with('brands', $brands)->with('brand_id', $brand_id);
-        } 
-        else if(!empty($product)) {
-            $units = Unit::where('number', 'like', '%'.$product.'%')
-                        ->orWhereHas('product', function($q) use ($product){
-                            $q->where('name', 'like', '%'.$product.'%');
-                        })->get();
-            return view('units.index')->with('units', $units)->with('brands', $brands);
-        }
+        $units = Unit::where(function($q) use ($product, $brand_id) {
+            $q->where('number', 'like', '%'.$product.'%')
+              ->orWhereHas('product', function($pq) use ($product){
+                $pq->where('name', 'like', '%'.$product.'%');
+            });
+            
+        })
+        ->whereHas('product', function($q) use ($brand_id) {
+            $q->where('brand_id', 'like', '%'.$brand_id.'%');
+        })
+        ->get();
+        
 
         return view('units.index')->with('units', $units)->with('brands', $brands)->with('brand_id', $brand_id);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
