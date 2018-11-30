@@ -20,12 +20,13 @@ class ProductsController extends Controller
     {
         $search = $request->search;
 
-        $products = Product::where('name', 'like', '%'.$search.'%')
-                    ->orWhere('price', 'like', '%'.$search.'%')
-                    ->orWhereHas('brand', function($q) use ($search){
-                        $q->where('name', 'like', '%' . $search . '%');
-                    })
-                    ->get();
+        $products = DB::table('products')
+            ->join('brands', 'brands.id', '=', 'products.brand_id')
+            ->select('products.*', 'brands.id', 'brands.name AS brand_name', 'brands.logo')
+            ->where('brands.name', 'like', '%'.$search.'%')
+            ->orWhere('products.name', 'like', '%'.$search.'%')
+            ->orWhere('price', 'like', '%'.$search.'%')
+            ->get();            
 
         return view('products.index')->with('products', $products);
     }

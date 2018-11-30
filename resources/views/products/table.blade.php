@@ -12,7 +12,7 @@
             <tr class="tr-shadow">
                 <td>{{ $product->name }}</td>
                 <td>
-                    <img src="{{ $product->brand->logo }}" style="width: 100px; height: 60px">
+                    <img src="{{ $product->logo }}" style="width: 100px; height: 60px">
                 </td>
                 <td>{{ $product->price }}</td>
                 <td>
