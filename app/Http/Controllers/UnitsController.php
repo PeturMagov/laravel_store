@@ -26,7 +26,9 @@ class UnitsController extends Controller
             ->join('products', 'products.id', '=', 'units.product_id')
             ->join('brands', 'brands.id', '=', 'products.brand_id')
             ->select('units.*', 'products.*', 'brands.id', 'brands.name AS brand_name', 'brands.logo')
-            ->where('brand_id', 'like', '%'.$brand_id.'%')
+            ->when($brand_id, function ($q) use ($brand_id) {
+                $q->where('brand_id', '=', $brand_id);
+            })
             ->where( function ($q) use ($product) {
                 $q->where('products.name', 'like', '%'.$product.'%')
                 ->orWhere('number', 'like', '%'.$product.'%');
