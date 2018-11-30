@@ -18,7 +18,7 @@
             <form action="{{ route('units') }}" method="get" class="form-horizontal">
                 <div class="row form-group">
                     <div class="col col-md-3">
-                        <label for="product" class=" form-control-label">Search Products</label>
+                        <label for="product" class=" form-control-label">Search Product</label>
                     </div>
                     <div class="col-12 col-md-9">
                         <input type="text" id="text-input" name="product" class="form-control" value="{{ request('product') }}">
