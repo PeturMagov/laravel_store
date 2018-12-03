@@ -49,23 +49,25 @@
                 <div class="text-center">
                     <button class="btn btn-success" type="submit">Search</button>
                 </div>
-            </form>
         </div>
 
         <div class="table-responsive table-responsive-data2">
             <table class="table table-data2">
                 <thead>
-                    <tr>
-                        <th>product</th>
-                        <th>brand</th>
-                        <th>serial number</th>
-                        <th>status</th>
-                        <th></th>
+                    <tr>     
+                            <th><input type="submit" name="order_by" value="ID" class="btn btn-link"></th>
+                            <th><input type="submit" name="order_by" value="Name" class="btn btn-link"></th>
+                            <th><input type="submit" name="order_by" value="Logo" class="btn btn-link"></th>
+                            <th><input type="submit" name="order_by" value="Number" class="btn btn-link"></th>
+                            <th><input type="submit" name="order_by" value="Status" class="btn btn-link"></th>
+                            <th></th>
+                        </form> 
                     </tr>
                 </thead>
                 <tbody>
                 	@foreach($units as $unit)
 	                    <tr class="tr-shadow">
+                            <td>{{ $unit->id }}</td>
 	                        <td>{{ $unit->name }}</td>
                             <td><img src="{{ $unit->logo }}" style="width: 100px; height: 60px"></td>
                             <td>{{ $unit->number }}</td>
