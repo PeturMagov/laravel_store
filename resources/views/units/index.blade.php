@@ -49,19 +49,20 @@
                 <div class="text-center">
                     <button class="btn btn-success" type="submit">Search</button>
                 </div>
+            </form>    
         </div>
 
         <div class="table-responsive table-responsive-data2">
             <table class="table table-data2">
                 <thead>
                     <tr>     
-                            <th><input type="submit" name="order_by" value="ID" class="btn btn-link"></th>
-                            <th><input type="submit" name="order_by" value="Name" class="btn btn-link"></th>
-                            <th><input type="submit" name="order_by" value="Logo" class="btn btn-link"></th>
-                            <th><input type="submit" name="order_by" value="Number" class="btn btn-link"></th>
-                            <th><input type="submit" name="order_by" value="Status" class="btn btn-link"></th>
+                            <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'id']) }}">id</a></th>
+                            <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'name']) }}">name</a></th>
+                            <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'logo']) }}">logo</a></th>
+                            <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'number']) }}">serial number</a></th>
+                            <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'status']) }}">status</a></th>
                             <th></th>
-                        </form> 
+                        
                     </tr>
                 </thead>
                 <tbody>

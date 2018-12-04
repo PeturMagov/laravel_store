@@ -39,7 +39,7 @@ class UnitsController extends Controller
             })
             ->get();  
 
-        return view('units.index')->with('units', $units)->with('brands', $brands)->with('brand_id', $brand_id);
+        return view('units.index')->with('units', $units)->with('brands', $brands)->with('brand_id', $brand_id)->with('product', $product);
     }
 
     /**
