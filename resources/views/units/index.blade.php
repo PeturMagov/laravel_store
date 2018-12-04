@@ -56,13 +56,12 @@
             <table class="table table-data2">
                 <thead>
                     <tr>     
-                            <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'id']) }}">id</a></th>
-                            <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'name']) }}">name</a></th>
-                            <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'logo']) }}">logo</a></th>
-                            <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'number']) }}">serial number</a></th>
-                            <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'status']) }}">status</a></th>
-                            <th></th>
-                        
+                        <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'id', 'sort' => $next_sort]) }}">id</a></th>
+                        <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'name', 'sort' => $next_sort]) }}">name</a></th>
+                        <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'logo', 'sort' => $next_sort]) }}">logo</a></th>
+                        <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'number', 'sort' => $next_sort]) }}">serial number</a></th>
+                        <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'status', 'sort' => $next_sort]) }}">status</a></th>
+                        <th></th>    
                     </tr>
                 </thead>
                 <tbody>

@@ -20,13 +20,16 @@ class UnitsController extends Controller
     {
         $product = $request->product;
         $brand_id = $request->brand_id;
-        $order_by = $request->order_by;
+        $order_by = $request->order_by != '' ? $request->order_by : 'id';
+        $sort = $request->sort != '' ? $request->sort : 'asc';
+        $next_sort = $sort == 'asc' ? 'desc' : 'asc';
         $brands = Brand::all();
 
         $units = DB::table('units')
             ->join('products', 'products.id', '=', 'units.product_id')
             ->join('brands', 'brands.id', '=', 'products.brand_id')
             ->select('units.*', 'products.name', 'brands.logo')
+            
             ->when($brand_id, function ($q) use ($brand_id) {
                 $q->where('brand_id', '=', $brand_id);
             })
@@ -34,12 +37,10 @@ class UnitsController extends Controller
                 $q->where('products.name', 'like', '%'.$product.'%')
                 ->orWhere('number', 'like', '%'.$product.'%');
             })
-            ->when($order_by, function ($q) use ($order_by) {
-                $q->orderByRaw($order_by);
-            })
-            ->get();  
+            ->orderByRaw($order_by .' '. $sort)
+            ->get();
 
-        return view('units.index')->with('units', $units)->with('brands', $brands)->with('brand_id', $brand_id)->with('product', $product);
+        return view('units.index')->with('units', $units)->with('brands', $brands)->with('brand_id', $brand_id)->with('product', $product)->with('order_by', $order_by)->with('next_sort', $next_sort);
     }
 
     /**
