@@ -21,7 +21,7 @@ class UnitsController extends Controller
         $product = $request->product;
         $brand_id = $request->brand_id;
         $order_by = $request->order_by != '' ? $request->order_by : 'id';
-        $sort = $request->sort != '' ? $request->sort : 'asc';
+        $sort = $request->sort ? $request->sort : 'asc';
         $next_sort = $sort == 'asc' ? 'desc' : 'asc';
         $brands = Brand::all();
 

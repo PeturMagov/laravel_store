@@ -98,6 +98,18 @@ Route::get('/unit/view/{id}', [
 	'uses' => 'UnitsController@show',
 	'as' => 'unit.view'
 ]);
+Route::get('/orders', [
+	'uses' => 'OrdersController@index',
+	'as' => 'orders'
+]);
+Route::get('/order/create', [
+	'uses' => 'OrdersController@create',
+	'as' => 'order.create'
+]);
+Route::post('/order/store', [
+	'uses' => 'OrdersController@store',
+	'as' => 'order.store'
+]);
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 

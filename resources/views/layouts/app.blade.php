@@ -82,7 +82,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="{{ route('index') }}">
+                <a href="/">
                     <img src="{{ asset('images/icon/download.jpg') }}"  style="height: 75px"/>
                 </a>
             </div>
@@ -122,6 +122,18 @@
                                 </li>
                                 <li>
                                     <a href="{{ route('unit.create') }}">Add new unit</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-tachometer-alt"></i>Orders</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="{{ route('orders') }}">All orders</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('order.create') }}">New order</a>
                                 </li>
                             </ul>
                         </li>
