@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="col-md-6 offset-3">
+	<div class="col-md-12">
         <!-- DATA TABLE -->
         <h3 class="title-5 m-b-35">all products</h3>
         <div class="table-data__tool">

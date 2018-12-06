@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="col-md-6 offset-3">
+<div class="col-md-3">	
         <!-- DATA TABLE -->
         <h3 class="title-5 m-b-35">all units</h3>
         <div class="table-data__tool">
@@ -17,18 +17,11 @@
         <div class="card-body card-block">
             <form action="{{ route('units') }}" method="get" class="form-horizontal">
                 <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="product" class=" form-control-label">Search Product</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" id="text-input" name="product" class="form-control" value="{{ request('product') }}">
-                    </div>
+                    <label for="product" class=" form-control-label">Search Product:</label>    
+                    <input type="text" id="text-input" name="product" class="form-control" value="{{ request('product') }}">
                 </div>
                 <div class="row form-group">    
-                    <div class="col col-md-3">
-                        <label for="brand_id" class=" form-control-label">Search Brand</label>
-                    </div>
-                    <div class="col-12 col-md-9 input-group">
+                    <label for="brand_id" class=" form-control-label">Search Brand:</label>
                         <select name="brand_id" id="select" class="form-control">
                             <option></option>
                             @foreach($brands as $brand)
@@ -44,16 +37,16 @@
                                 </option>
                             @endforeach
                         </select>
-                    </div>
                 </div>
                 <div class="text-center">
                     <button class="btn btn-success" type="submit">Search</button>
                 </div>
             </form>    
         </div>
-
+</div>        
+<div class="col-md-12">
         <div class="table-responsive table-responsive-data2">
-            <table class="table table-data2">
+            <table class="table table-borderless table-striped table-earning">
                 <thead>
                     <tr>     
                         <th><a href="{{ route('units', ['product' => $product, 'brand_id' => $brand_id, 'order_by' => 'id', 'sort' => $next_sort]) }}">id</a></th>

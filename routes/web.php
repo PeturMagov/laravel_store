@@ -110,6 +110,26 @@ Route::post('/order/store', [
 	'uses' => 'OrdersController@store',
 	'as' => 'order.store'
 ]);
+Route::get('/order/view/{id}', [
+	'uses' => 'OrdersController@show',
+	'as' => 'order.view'
+]);
+Route::get('/order/change_status/{id}', [
+	'uses' => 'OrdersController@change_status',
+	'as' => 'order.change_status'
+]);
+Route::get('/order/edit/{id}', [
+	'uses' => 'OrdersController@edit',
+	'as' => 'order.edit'
+]);
+Route::post('/order/update/{id}', [
+	'uses' => 'OrdersController@update',
+	'as' => 'order.update'
+]);
+Route::get('/order/delete/{id}', [
+	'uses' => 'OrdersController@destroy',
+	'as' => 'order.delete'
+]);
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 

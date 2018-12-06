@@ -14,12 +14,18 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
+            date_default_timezone_set("Europe/Sofia");
+            $date = date("H:i d-m-Y");
+            
             $table->increments('id');
             $table->text('shipping_address');
             $table->string('name');
             $table->string('phone');
-            $table->string('status');
-            $table->timestamps();
+            $table->string('status')->default('pending');
+            $table->string('ordered_at')->default($date);
+            $table->string('shipped_at')->default('---');
+            $table->string('completed_at')->default('---');
+            $table->string('canceled_at')->default('---');
         });
     }
 

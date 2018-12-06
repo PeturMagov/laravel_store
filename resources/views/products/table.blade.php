@@ -1,4 +1,4 @@
-<table class="table table-data2">
+<table class="table table-borderless table-striped table-earning">
     <thead>
         <tr>
             <th>name</th>
